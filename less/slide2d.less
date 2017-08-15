@@ -1,0 +1,20 @@
+
+@itemX-2d:1200px;
+.itemDefault(@translateX:@itemX-2d){
+  transform: translateX(@translateX);
+}
+
+header .banner{width:1200px;height: 300px;margin: 100px auto 0;
+  .slide-carousel .item-list li{width:1200px;height: 300px;transition: all 0.5s ease-out;position: absolute;top:0;left: 0;
+    &.item0{.itemDefault(@itemX-2d*-1);}
+    &.item1{.itemDefault(@itemX-2d*0);}
+    &.item2{ .itemDefault(@itemX-2d);}
+    &.item3{.itemDefault(@itemX-2d*2);}
+    &.item4{.itemDefault(@itemX-2d*3);}
+    &.item5{.itemDefault(@itemX-2d*4);}
+    &.item6{.itemDefault(@itemX-2d*5);}
+    &.item7{.itemDefault(@itemX-2d*6);}
+    &.item8{.itemDefault(@itemX-2d*7);}
+    &.item9{.itemDefault(@itemX-2d*8);}
+  }
+}

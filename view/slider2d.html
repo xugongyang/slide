@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slide 2d</title>
+    <link rel="stylesheet/less" href="../less/reset.less">
+    <link rel="stylesheet/less" href="../less/slide.less">
+    <link rel="stylesheet/less" href="../less/slide2d.less">
+</head>
+<body>
+<header>
+    <div class="banner">
+        <div class="slide-carousel">
+            <ul id="itemList" class="item-list clearfix" count="10">
+                <li class="item0">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner1.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item1">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner2.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item2">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner3.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item3">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner4.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item4">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner5.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item5">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner6.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item6">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner7.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item7">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner8.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item8">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner9.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+                <li class="item9">
+                    <div class="item-content">
+                        <a href="javascript:void(0);">
+                            <img class="cover-img" src="../image/banner10.jpg" alt="">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <!--indicators-->
+            <div class="indicator-list">
+                <a href="javascript:void(0);" data-slide-index="0" class="selected"></a>
+                <a href="javascript:void(0);" data-slide-index="1"></a>
+                <a href="javascript:void(0);" data-slide-index="2"></a>
+                <a href="javascript:void(0);" data-slide-index="3"></a>
+                <a href="javascript:void(0);" data-slide-index="4"></a>
+                <a href="javascript:void(0);" data-slide-index="5"></a>
+                <a href="javascript:void(0);" data-slide-index="6"></a>
+                <a href="javascript:void(0);" data-slide-index="7"></a>
+                <a href="javascript:void(0);" data-slide-index="8"></a>
+                <a href="javascript:void(0);" data-slide-index="9"></a>
+            </div>
+            <!--controls-->
+            <div class="controls">
+                <a id="itemPrev" class="item-prev glyphicon glyphicon-menu-left" href="javascript:void(0);"></a>
+                <a id="itemNext" class="item-next glyphicon glyphicon-menu-right" href="javascript:void(0);"></a>
+            </div>
+            <!--desc-->
+            <div class="desc">
+                <a href=""><strong id="sliderDesc"></strong></a>
+            </div>
+        </div>
+    </div>
+</header>
+<main></main>
+<footer></footer>
+</body>
+</html>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/less.2.7.2.min.js"></script>
+<script src="../js/slide-min.js"></script>
+<script>
+    $(function(){
+        //回调测试
+        var  slideInterval=null,sliderDescArr=[],i=0,len=10;
+        for(;i<len;i++){
+            sliderDescArr.push(new Array(10).join(''+i));
+        }
+        $('#sliderDesc').text(sliderDescArr[0]);
+
+        $('.slide-carousel').slideCarsousel({slideInterval:slideInterval,callbackFunc:function(index){
+            $('#sliderDesc').text(sliderDescArr[index]);
+        }});
+    });
+</script>
