@@ -128,12 +128,11 @@
     }
     // the default setting
     $.fn.slideCarsousel.defaultSetting = {
-        slideInterval :null, //轮播定时器
-        isAutoChange :true, //是否自动播放
-        direction : 5000, //轮播间隔时间
-        animateSpeed:500,//动画执行时间
-        callbackFunc:null, //回调函数
-        indicatorEvent:'click', //指示器事件 默认点击 'mouseover' 则鼠标悬浮触发
-        slideType:'2d' //  '2d', '3d'
+        slideInterval :null, // interval of slide
+        isAutoChange :true, // true or false
+        direction : 5000, // time interval between
+        callbackFunc:null, // if it is not empty, it will execute
+        indicatorEvent:'click', // indicator event,supports click or mouseover
+        slideType:'2d' //  2d or 3d
      }
 })(jQuery);
