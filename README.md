@@ -125,7 +125,7 @@
       </div>
 ```
 
-#### less
+#### slide common less
 ```
 .slide-carousel{width: 100%;height: 100%;position: relative;overflow: hidden;
   .item-list{position:relative;height: 100%;width:100%;overflow: hidden;
@@ -155,6 +155,28 @@
   &:hover .controls{opacity: 1;transition: opacity 0.5s ease;}
 }
 ```
+#### slide 3d less
+```
+@itemX-3d:225px;
+.itemDefault(@translateX:@itemX-3d,@scale:0.8){
+  transform: translate3d(@translateX, 0, 0) scale(@scale);
+}
+
+header .banner{width:1200px;height: 300px;margin: 100px auto 0;
+  .slide-carousel .item-list li{width:750px;height: 300px;transition: all 0.5s ease-out;opacity: 0;position: absolute;top:0;left: 0;
+    &.item0{.itemDefault(@itemX-3d*-1);}
+    &.item1{ transform: translate3d(0, 0, 0) scale(0.8);transform-origin: 0 50%;opacity: 1;z-index: 2;}
+    &.item2{ transform: translate3d(@itemX-3d, 0, 0) scale(1);transform-origin: 0 50%;opacity: 1;z-index: 3;}
+    &.item3{ transform: translate3d(@itemX-3d*2, 0, 0) scale(0.8);transform-origin: 100% 50%;opacity: 1;z-index: 2;}
+    &.item4{.itemDefault(@itemX-3d*3);}
+    &.item5{.itemDefault(@itemX-3d*4);}
+    &.item6{.itemDefault(@itemX-3d*5);}
+    &.item7{.itemDefault(@itemX-3d*6);}
+    &.item8{.itemDefault(@itemX-3d*7);}
+    &.item9{.itemDefault(@itemX-3d*8);}
+  }
+}
+```
 
 ####  slide 2d less
 ```
@@ -179,51 +201,6 @@ header .banner{width:1200px;height: 300px;margin: 100px auto 0;
 }
 ```
 
-####  slide 3d less
-```
-@itemX-2d:1200px;
-.itemDefault(@translateX:@itemX-2d){
-  transform: translateX(@translateX);
-}
-
-header .banner{width:1200px;height: 300px;margin: 100px auto 0;
-  .slide-carousel .item-list li{width:1200px;height: 300px;transition: all 0.5s ease-out;position: absolute;top:0;left: 0;
-    &.item0{.itemDefault(@itemX-2d*-1);}
-    &.item1{.itemDefault(@itemX-2d*0);}
-    &.item2{ .itemDefault(@itemX-2d);}
-    &.item3{.itemDefault(@itemX-2d*2);}
-    &.item4{.itemDefault(@itemX-2d*3);}
-    &.item5{.itemDefault(@itemX-2d*4);}
-    &.item6{.itemDefault(@itemX-2d*5);}
-    &.item7{.itemDefault(@itemX-2d*6);}
-    &.item8{.itemDefault(@itemX-2d*7);}
-    &.item9{.itemDefault(@itemX-2d*8);}
-  }
-}
-```
-
-#### slide 3d less
-```
-@itemX-3d:225px;
-.itemDefault(@translateX:@itemX-3d,@scale:0.8){
-  transform: translate3d(@translateX, 0, 0) scale(@scale);
-}
-
-header .banner{width:1200px;height: 300px;margin: 100px auto 0;
-  .slide-carousel .item-list li{width:750px;height: 300px;transition: all 0.5s ease-out;opacity: 0;position: absolute;top:0;left: 0;
-    &.item0{.itemDefault(@itemX-3d*-1);}
-    &.item1{ transform: translate3d(0, 0, 0) scale(0.8);transform-origin: 0 50%;opacity: 1;z-index: 2;}
-    &.item2{ transform: translate3d(@itemX-3d, 0, 0) scale(1);transform-origin: 0 50%;opacity: 1;z-index: 3;}
-    &.item3{ transform: translate3d(@itemX-3d*2, 0, 0) scale(0.8);transform-origin: 100% 50%;opacity: 1;z-index: 2;}
-    &.item4{.itemDefault(@itemX-3d*3);}
-    &.item5{.itemDefault(@itemX-3d*4);}
-    &.item6{.itemDefault(@itemX-3d*5);}
-    &.item7{.itemDefault(@itemX-3d*6);}
-    &.item8{.itemDefault(@itemX-3d*7);}
-    &.item9{.itemDefault(@itemX-3d*8);}
-  }
-}
-```
 
 
 
