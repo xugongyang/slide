@@ -26,9 +26,10 @@
 </script>
 ```
 
-#### html
+#### html  container set class  slide-3d or slide-2d
+
 ```
- <div class="slide-carousel">
+ <div class="slide-carousel slide-3d">
             <ul id="itemList" class="item-list clearfix" count="10">
                 <li class="item0">
                     <div class="item-content">
@@ -125,8 +126,18 @@
       </div>
 ```
 
-#### slide common less
+#### slide less
 ```
+
+@itemX-2d:1200px;
+@itemX-3d:225px;
+.itemDefault-3d(@translateX:@itemX-3d,@scale:0.8){
+  transform: translate3d(@translateX, 0, 0) scale(@scale);
+}
+.itemDefault-2d(@translateX:@itemX-2d){
+  transform: translateX(@translateX);
+}
+
 .slide-carousel{width: 100%;height: 100%;position: relative;overflow: hidden;
   .item-list{position:relative;height: 100%;width:100%;overflow: hidden;
     li{
@@ -154,52 +165,38 @@
   }
   &:hover .controls{opacity: 1;transition: opacity 0.5s ease;}
 }
-```
-#### slide 3d less
-```
-@itemX-3d:225px;
-.itemDefault(@translateX:@itemX-3d,@scale:0.8){
-  transform: translate3d(@translateX, 0, 0) scale(@scale);
-}
 
 header .banner{width:1200px;height: 300px;margin: 100px auto 0;
-  .slide-carousel .item-list li{width:750px;height: 300px;transition: all 0.5s ease-out;opacity: 0;position: absolute;top:0;left: 0;
-    &.item0{.itemDefault(@itemX-3d*-1);}
-    &.item1{ transform: translate3d(0, 0, 0) scale(0.8);transform-origin: 0 50%;opacity: 1;z-index: 2;}
-    &.item2{ transform: translate3d(@itemX-3d, 0, 0) scale(1);transform-origin: 0 50%;opacity: 1;z-index: 3;}
-    &.item3{ transform: translate3d(@itemX-3d*2, 0, 0) scale(0.8);transform-origin: 100% 50%;opacity: 1;z-index: 2;}
-    &.item4{.itemDefault(@itemX-3d*3);}
-    &.item5{.itemDefault(@itemX-3d*4);}
-    &.item6{.itemDefault(@itemX-3d*5);}
-    &.item7{.itemDefault(@itemX-3d*6);}
-    &.item8{.itemDefault(@itemX-3d*7);}
-    &.item9{.itemDefault(@itemX-3d*8);}
+  .slide-3d{
+    .desc{display: none;}
+    .item-list li{width:750px;height: 300px;transition: all 0.5s ease-out;opacity: 0;position: absolute;top:0;left: 0;
+      &.item0{.itemDefault-3d(@itemX-3d*-1);}
+      &.item1{ transform: translate3d(0, 0, 0) scale(0.8);transform-origin: 0 50%;opacity: 1;z-index: 2;}
+      &.item2{ transform: translate3d(@itemX-3d, 0, 0) scale(1);transform-origin: 0 50%;opacity: 1;z-index: 3;}
+      &.item3{ transform: translate3d(@itemX-3d*2, 0, 0) scale(0.8);transform-origin: 100% 50%;opacity: 1;z-index: 2;}
+      &.item4{.itemDefault-3d(@itemX-3d*3);}
+      &.item5{.itemDefault-3d(@itemX-3d*4);}
+      &.item6{.itemDefault-3d(@itemX-3d*5);}
+      &.item7{.itemDefault-3d(@itemX-3d*6);}
+      &.item8{.itemDefault-3d(@itemX-3d*7);}
+      &.item9{.itemDefault-3d(@itemX-3d*8);}
+    }
+  }
+  .slide-2d .item-list li{width:1200px;height: 300px;transition: all 0.5s ease-out;position: absolute;top:0;left: 0;
+    &.item0{.itemDefault-2d(@itemX-2d*-1);}
+    &.item1{.itemDefault-2d(@itemX-2d*0);}
+    &.item2{ .itemDefault-2d(@itemX-2d);}
+    &.item3{.itemDefault-2d(@itemX-2d*2);}
+    &.item4{.itemDefault-2d(@itemX-2d*3);}
+    &.item5{.itemDefault-2d(@itemX-2d*4);}
+    &.item6{.itemDefault-2d(@itemX-2d*5);}
+    &.item7{.itemDefault-2d(@itemX-2d*6);}
+    &.item8{.itemDefault-2d(@itemX-2d*7);}
+    &.item9{.itemDefault-2d(@itemX-2d*8);}
   }
 }
 ```
 
-####  slide 2d less
-```
-@itemX-2d:1200px;
-.itemDefault(@translateX:@itemX-2d){
-  transform: translateX(@translateX);
-}
-
-header .banner{width:1200px;height: 300px;margin: 100px auto 0;
-  .slide-carousel .item-list li{width:1200px;height: 300px;transition: all 0.5s ease-out;position: absolute;top:0;left: 0;
-    &.item0{.itemDefault(@itemX-2d*-1);}
-    &.item1{.itemDefault(@itemX-2d*0);}
-    &.item2{ .itemDefault(@itemX-2d);}
-    &.item3{.itemDefault(@itemX-2d*2);}
-    &.item4{.itemDefault(@itemX-2d*3);}
-    &.item5{.itemDefault(@itemX-2d*4);}
-    &.item6{.itemDefault(@itemX-2d*5);}
-    &.item7{.itemDefault(@itemX-2d*6);}
-    &.item8{.itemDefault(@itemX-2d*7);}
-    &.item9{.itemDefault(@itemX-2d*8);}
-  }
-}
-```
 
 
 
