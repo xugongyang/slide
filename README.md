@@ -20,8 +20,19 @@
 <script src="../js/slide-min.js"></script>
 <script>
     $(function(){
-        var slideInterval=null;
-        $('.slide-carousel').slideCarsousel({slideInterval:slideInterval,slideType:'3d',indicatorEvent:'mouseover'});
+               //3d
+               var slideInterval3d=null;
+               $('.slide-3d').slideCarsousel({slideInterval:slideInterval3d,slideType:'3d',indicatorEvent:'mouseover'});
+
+               //2d
+       //        var  slideInterval2d=null,sliderDescArr=[],i=0,len=10;
+       //        for(;i<len;i++){
+       //            sliderDescArr.push(new Array(10).join(''+i));
+       //        }
+       //        $('#sliderDesc').text(sliderDescArr[0]);
+       //        $('.slide-2d').slideCarsousel({slideInterval:slideInterval2d,slideType:'2d',indicatorEvent:'click',callbackFunc:function(index){
+       //            $('#sliderDesc').text(sliderDescArr[index]);
+       //        }});
     });
 </script>
 ```
