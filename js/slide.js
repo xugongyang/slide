@@ -23,14 +23,14 @@
                     slide.itemClassArr.push('item'+i);
                 }
                 //自动播放
-                if(settings.isAutoChange){
-                    slide.slideAutoChange();
-                }
+                slide.slideAutoChange();
             },
             slideAutoChange:function(){
-                settings.slideInterval= setInterval(function() {
-                    slide.toNext();
-                }, settings.direction);
+                if(settings.isAutoChange){
+                    settings.slideInterval= setInterval(function() {
+                        slide.toNext();
+                    }, settings.direction);
+                }
             },
             toNext:function(){
                 //在数组第一个元素 添加元素
