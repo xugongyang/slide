@@ -3,17 +3,19 @@
  * author:xugongyang
  * date: August 15, 2017
  */
-(function($) {
+;(function($) {
     $.fn.slideCarsousel=function(settings){
         settings = $.extend({}, $.fn.slideCarsousel.defaultSetting, settings);
+        var wrapper=$(this),ul=wrapper.children('ul.item-list'),liList=ul.children();
         var slide={
-            slideCarousel:$('.slide-carousel'),
-            liList:$('#itemList li'),
-            count:parseInt($('#itemList').attr('count')),
+            slideCarousel:wrapper,
+            count:liList.length,
+            ul:ul,
+            liList:liList,
             currentIndex:0,
-            indicatorList:$('.indicator-list>a'),
-            itemPrev:$('#itemPrev'),
-            itemNext:$('#itemNext'),
+            indicatorList:wrapper.children('.indicator-list').children('a'),
+            itemPrev:wrapper.children('.controls').children('.item-prev'),
+            itemNext:wrapper.children('.controls').children('.item-next'),
             itemClassArr:[],
             init:function(){
                 var i=0,length=slide.count;
@@ -100,7 +102,6 @@
                 });
                 break;
             case 'mouseover':
-                console.log('mouseover事件');
                 slide.indicatorList.mouseover(function(){
                     slide.processIndicatorEvent($(this).attr('data-slide-index'));
                 });
@@ -111,10 +112,10 @@
             case '2d':
                 break;
             case '3d':
-                $('#itemList').on('click','.item1 img',function(){
+                slide.ul.on('click','.item1 img',function(){
                     slide.toPrev();
                 });
-                $('#itemList').on('click','.item3 img',function(){
+                slide.ul.on('click','.item3 img',function(){
                     slide.toNext();
                 });
                 break;
@@ -128,11 +129,11 @@
     }
     // the default setting
     $.fn.slideCarsousel.defaultSetting = {
-        slideInterval :null, // interval of slide
+        slideInterval :'slideInterval', // interval of slide
         isAutoChange :true, // true or false
         direction : 5000, // time interval between
         callbackFunc:null, // if it is not empty, it will execute
         indicatorEvent:'click', // indicator event,supports click or mouseover
         slideType:'2d' //  2d or 3d
-     }
+    }
 })(jQuery);

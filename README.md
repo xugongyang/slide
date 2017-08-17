@@ -20,19 +20,18 @@
 <script src="../js/slide-min.js"></script>
 <script>
     $(function(){
-               //3d
-               var slideInterval3d=null;
-               $('.slide-3d').slideCarsousel({slideInterval:slideInterval3d,slideType:'3d',indicatorEvent:'mouseover'});
+        //3d
+        $('#slide3d').slideCarsousel({slideType:'3d',indicatorEvent:'mouseover'});
 
-               //2d
-       //        var  slideInterval2d=null,sliderDescArr=[],i=0,len=10;
-       //        for(;i<len;i++){
-       //            sliderDescArr.push(new Array(10).join(''+i));
-       //        }
-       //        $('#sliderDesc').text(sliderDescArr[0]);
-       //        $('.slide-2d').slideCarsousel({slideInterval:slideInterval2d,slideType:'2d',indicatorEvent:'click',callbackFunc:function(index){
-       //            $('#sliderDesc').text(sliderDescArr[index]);
-       //        }});
+        //2d
+        var  sliderDescArr=[],i=0,len=10;
+        for(;i<len;i++){
+            sliderDescArr.push(new Array(10).join(''+i));
+        }
+        $('#sliderDesc').text(sliderDescArr[0]);
+        $('#slide2d').slideCarsousel({callbackFunc:function(index){
+            $('#sliderDesc1').text(sliderDescArr[index]);
+        }});
     });
 </script>
 ```
@@ -40,8 +39,8 @@
 #### html  container set class  slide-3d or slide-2d
 
 ```
- <div class="slide-carousel slide-3d">
-            <ul id="itemList" class="item-list clearfix" count="10">
+<div id="slide2d" class="slide-carousel slide-2d">
+            <ul  class="item-list clearfix">
                 <li class="item0">
                     <div class="item-content">
                         <a href="javascript:void(0);">
@@ -128,27 +127,18 @@
             </div>
             <!--controls-->
             <div class="controls">
-                <a id="itemPrev" class="item-prev glyphicon glyphicon-menu-left" href="javascript:void(0);"></a>
-                <a id="itemNext" class="item-next glyphicon glyphicon-menu-right" href="javascript:void(0);"></a>
+                <a  class="item-prev glyphicon glyphicon-menu-left" href="javascript:void(0);"></a>
+                <a  class="item-next glyphicon glyphicon-menu-right" href="javascript:void(0);"></a>
             </div>
             <!--desc-->
             <div class="desc">
-                <a href=""><strong id="sliderDesc"></strong></a>
-      </div>
+                <a href=""><strong id="sliderDesc1"></strong></a>
+            </div>
+        </div>
 ```
 
-#### slide less
+#### slide common less
 ```
-
-@itemX-2d:1200px;
-@itemX-3d:225px;
-.itemDefault-3d(@translateX:@itemX-3d,@scale:0.8){
-  transform: translate3d(@translateX, 0, 0) scale(@scale);
-}
-.itemDefault-2d(@translateX:@itemX-2d){
-  transform: translateX(@translateX);
-}
-
 .slide-carousel{width: 100%;height: 100%;position: relative;overflow: hidden;
   .item-list{position:relative;height: 100%;width:100%;overflow: hidden;
     li{
@@ -176,8 +166,21 @@
   }
   &:hover .controls{opacity: 1;transition: opacity 0.5s ease;}
 }
+```
+
+#### slide 2d or 3d custom style
+```
+@itemX-2d:1200px;
+@itemX-3d:225px;
+.itemDefault-3d(@translateX:@itemX-3d,@scale:0.8){
+  transform: translate3d(@translateX, 0, 0) scale(@scale);
+}
+.itemDefault-2d(@translateX:@itemX-2d){
+  transform: translateX(@translateX);
+}
 
 header .banner{width:1200px;height: 300px;margin: 100px auto 0;
+  .slide-carousel{margin-bottom: 20px;}
   .slide-3d{
     .desc{display: none;}
     .item-list li{width:750px;height: 300px;transition: all 0.5s ease-out;opacity: 0;position: absolute;top:0;left: 0;
@@ -206,6 +209,7 @@ header .banner{width:1200px;height: 300px;margin: 100px auto 0;
     &.item9{.itemDefault-2d(@itemX-2d*8);}
   }
 }
+
 ```
 
 
