@@ -6,7 +6,7 @@
 #### the default setting
 ```
       $.fn.slideCarsousel.defaultSetting = {
-        slideInterval :null, // interval of slide
+        slideInterval :'slideInterval', // interval of slide
         isAutoChange :true, // true or false
         direction : 5000, // time interval between
         callbackFunc:null, // if it is not empty, it will execute
