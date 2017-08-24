@@ -43,7 +43,7 @@
             },
             toPrev:function(){
                 slide.itemClassArr.push(slide.itemClassArr[0]);
-                //删除数组中最后一个元素
+                //删除数组中第一个元素
                 slide.itemClassArr.shift();
                 slide.currentIndex--;
                 slide.currentIndex=slide.currentIndex<0?slide.count-1:slide.currentIndex;
