@@ -1,0 +1,32 @@
+
+@itemX:1200px;
+
+.itemDefault(@translateX:@itemX){
+  transform: translateX(@translateX);
+}
+
+
+
+.slide-class{
+  width:1200px;height: 400px;margin: 100px auto 0;
+  .item-list{position:relative;height: 100%;width:100%;overflow: hidden;transition: none;
+    li{width:1200px;height: 400px;position: absolute;top:0;left: 0;transition: all 0.5s ease;
+      &.transition0{transition: all 0s;}
+      &.transitionAnimate{transition: all 0.5s ease;}
+
+      &.item0{.itemDefault(@itemX*-1);}
+      &.item1{.itemDefault(@itemX*0);}
+      &.item2{ .itemDefault(@itemX);}
+      &.item3{.itemDefault(@itemX*2);}
+      &.item4{.itemDefault(@itemX*3);}
+      &.item5{.itemDefault(@itemX*4);}
+    }
+  }
+}
+
+.slide-tab{width:1200px;overflow: hidden;margin: 50px auto 0;
+  .item-list{height: 300px;transition: all 0.5s ease;}
+  li{width:1200px;height: 100%;float: left;}
+}
+
+
