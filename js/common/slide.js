@@ -177,28 +177,55 @@
             itemList:ul,
             itemWidth:parseInt(ul.attr('itemWidth')),
             count:liList.length,
-            currentIndex:0,
+            currentIndex:0, //指示器下标 初始值 0
+            translateX:parseInt(ul.attr('translateX')),// 选项位移
+            tempX:0,
             indicatorList:wrapper.children('.indicator-list').children('a'),
             customIndicatorList:wrapper.children('.custom-indicator-list').find('.indicator'),
+            itemPrev:wrapper.children('.controls').children('.item-prev'),
+            itemNext:wrapper.children('.controls').children('.item-next'),
             processCallbackFunc:function(index){
                 if(settings.callbackFunc!=null&&settings.callbackFunc!=undefined){
                     settings.callbackFunc(index);//回调
                 }
             },
             processIndicator:function(targetIndex){
-                var currentIndex=parseInt(slide.itemList.attr('index'));
-                if(currentIndex==targetIndex){
-                    return;
-                }
+                if(slide.currentIndex==targetIndex){return;}
                 if(settings.isAutoChange){clearInterval(settings.slideInterval);}
-                var tempX=parseInt(slide.itemList.attr('translateX')) + slide.itemWidth*(currentIndex-targetIndex);
-                slide.itemList.css('marginLeft',tempX);
-                slide.itemList.attr('translateX',tempX).attr('index',targetIndex).css('marginLeft',tempX+'px');
-                slide.indicatorList.removeClass('selected').eq(targetIndex).addClass('selected');
-                slide.customIndicatorList.removeClass('selected').eq(targetIndex).addClass('selected');
-                slide.processCallbackFunc(targetIndex);//回调
+                slide.tempX=slide.tempX + slide.itemWidth*(slide.currentIndex-targetIndex);
+                slide.currentIndex=targetIndex;
+                slide.itemList.stop().animate({marginLeft:slide.tempX+'px'},settings.animateTime,function(){
+                    if(slide.currentIndex<0) {
+                        slide.currentIndex = slide.count - 1;
+                        slide.tempX = -slide.itemWidth *(slide.count-1)+slide.translateX;
+                        slide.itemList.css('marginLeft',slide.tempX+'px');
+                    }
+                    if(slide.currentIndex==slide.count){
+                        slide.currentIndex=0;
+                        slide.tempX=slide.translateX;
+                        slide.itemList.css('marginLeft',slide.tempX+'px');
+                    }
+                    slide.indicatorList.removeClass('selected').eq(slide.currentIndex).addClass('selected');
+                    slide.customIndicatorList.removeClass('selected').eq(slide.currentIndex).addClass('selected');
+                    slide.processCallbackFunc(slide.currentIndex);//回调
+                    slide.slideAutoChange();
+                });
+            },
+            toNext:function(){
+                slide.processIndicator(slide.currentIndex+1);
+            },
+            toPrev:function(){
+                slide.processIndicator(slide.currentIndex-1);
+            },
+            slideAutoChange:function(){
+                if(settings.isAutoChange){
+                    settings.slideInterval= setInterval(function() {
+                        slide.toNext();
+                    }, settings.direction);
+                }
             },
             init:function(){
+                slide.tempX=slide.translateX;
                 switch(settings.indicatorEvent){
                     case 'click':
                         slide.indicatorList.click(function(){
@@ -221,14 +248,25 @@
                         });
                         break;
                 }
+                slide.slideAutoChange();
             }
         }
         slide.init();
+        slide.itemNext.click(function(){
+            slide.toNext();
+        });
+        slide.itemPrev.click(function(){
+            slide.toPrev();
+        });
     }
     // slide tab default setting
     $.fn.slideTab.defaultSetting = {
-        callbackFunc:null, //回调函数
-        indicatorEvent:'click'
+        slideInterval :'slideInterval', // interval of slide
+        isAutoChange :true, // true or false
+        direction : 5000, // time interval between
+        callbackFunc:null, // if it is not empty, it will execute
+        indicatorEvent:'click', // indicator event,supports click or mouseover
+        animateTime:500
     }
 
 
