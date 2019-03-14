@@ -3,7 +3,7 @@
 ### Style files are written in less. So you might need to compile it.
 ### In addition, the project supports custom parameters.
 
-#### the default setting
+#### the default setting   
 ```
       $.fn.slideCarsousel.defaultSetting = {
         slideInterval :'slideInterval', // interval of slide
